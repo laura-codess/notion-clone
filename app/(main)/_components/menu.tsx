@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/clerk-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import {
@@ -22,7 +21,6 @@ interface MenuProps {
 
 export const Menu = ({ documentId }: MenuProps) => {
   const router = useRouter();
-  const { user } = useUser();
 
   const archive = useMutation(api.documents.archive);
 
@@ -56,7 +54,7 @@ export const Menu = ({ documentId }: MenuProps) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="text-xs to-muted-foreground p-2">
-          Last edited by: {user?.fullName}
+          Last edited by: Anonymous
         </div>
       </DropdownMenuContent>
     </DropdownMenu>

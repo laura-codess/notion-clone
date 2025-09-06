@@ -2,7 +2,6 @@
 
 import { api } from "@/convex/_generated/api";
 import { useSearch } from "@/hooks/use-search";
-import { useUser } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,7 +9,6 @@ import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, C
 import { File } from "lucide-react";
 
 export const SearchCommand = () => {
-    const {user} = useUser();
     const router = useRouter();
     const documents = useQuery(api.documents.getSearch);
     const [isMounted,setIsMounted] = useState(false)
@@ -45,7 +43,7 @@ export const SearchCommand = () => {
 
     return(
         <CommandDialog open={isOpen} onOpenChange={onClose}>
-           <CommandInput placeholder={`Search ${user?.fullName}'s Notion...`}/>
+           <CommandInput placeholder="Search Notion..."/>
            <CommandList>
             <CommandEmpty>No result found.</CommandEmpty>
             <CommandGroup heading="Documents">
